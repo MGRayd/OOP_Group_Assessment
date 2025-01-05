@@ -28,4 +28,21 @@ class LoginSystem {
 
         return null
     }
+
+    fun addUser(username: String, password: String, isAdmin: Boolean = false): Boolean {
+        if (regularUsers.containsKey(username) || adminUsers.containsKey(username)) {
+            return false
+        }
+
+        if (isAdmin) {
+            adminUsers[username] = AdminUser(username, password)
+        } else {
+            regularUsers[username] = RegularUser(username, password)
+        }
+        return true
+    }
+
+    fun isAdmin(user: User): Boolean {
+        return user is AdminUser
+    }
 }

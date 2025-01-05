@@ -6,11 +6,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import service.UserService
+import service.LoginSystem
 
 @Composable
 fun SignupScreen(
-    userService: UserService,
+    loginSystem: LoginSystem,
     onSignupSuccess: () -> Unit,
     onBackToLogin: () -> Unit
 ) {
@@ -69,7 +69,7 @@ fun SignupScreen(
                     password.isBlank() -> errorMessage = "Password cannot be empty"
                     password != confirmPassword -> errorMessage = "Passwords do not match"
                     else -> {
-                        if (userService.addUser(username, password)) {
+                        if (loginSystem.addUser(username, password)) {
                             onSignupSuccess()
                         } else {
                             errorMessage = "Username already exists"

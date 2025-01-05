@@ -9,10 +9,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import service.UserService
+import service.LoginSystem
 
 fun main() = application {
-    val userService = remember { UserService() }
+    val loginSystem = remember { LoginSystem() }
     
     Window(
         onCloseRequest = ::exitApplication,
@@ -27,7 +27,7 @@ fun main() = application {
             when {
                 showSignup -> {
                     SignupScreen(
-                        userService = userService,
+                        loginSystem = loginSystem,
                         onSignupSuccess = {
                             showSignup = false
                         },
@@ -38,7 +38,7 @@ fun main() = application {
                 }
                 !isLoggedIn -> {
                     LoginScreen(
-                        userService = userService,
+                        loginSystem = loginSystem,
                         onLogin = { username, isAdminUser ->
                             isLoggedIn = true
                             isAdmin = isAdminUser

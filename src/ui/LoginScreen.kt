@@ -6,11 +6,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import service.UserService
+import service.LoginSystem
 
 @Composable
 fun LoginScreen(
-    userService: UserService,
+    loginSystem: LoginSystem,
     onLogin: (String, Boolean) -> Unit,
     onSignupClick: () -> Unit
 ) {
@@ -53,9 +53,9 @@ fun LoginScreen(
         Spacer(Modifier.height(16.dp))
         
         Button(onClick = {
-            val user = userService.validateUser(username, password)
+            val user = loginSystem.login(username, password)
             if (user != null) {
-                onLogin(username, userService.isAdmin(user))
+                onLogin(username, loginSystem.isAdmin(user))
             } else {
                 errorMessage = "Invalid username or password"
             }
