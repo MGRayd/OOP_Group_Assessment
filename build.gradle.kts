@@ -16,6 +16,11 @@ repositories {
 
 kotlin {
     jvmToolchain(21)
+    sourceSets {
+        main {
+            kotlin.srcDirs("src")
+        }
+    }
 }
 
 dependencies {
@@ -28,7 +33,7 @@ dependencies {
 
 compose.desktop {
     application {
-        mainClass = "com.university.booking.ui.MainWindowKt"
+        mainClass = "ui.MainWindowKt"
         
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
